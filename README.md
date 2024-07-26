@@ -2,6 +2,8 @@
 
 This project is a Nuxt.js application with a canvas feature where users can drag and drop pre-defined components onto a canvas, resize them, and connect them with curved lines. The state management is handled using Pinia.
 
+![demo](public/demo.png)
+
 ## Table of Contents
 
 - [Features](#features)
@@ -59,21 +61,21 @@ nuxt-canvas-project
 ├── components
 │   ├── Toolbar.vue
 │   ├── Canvas.vue
+│   ├── Sidebar.vue
 │   └── Node.vue
 ├── stores
 │   └── canvas.js
-├── pages
-│   └── index.vue
-├── static
+│── plugins
+├── public
 ├── nuxt.config.js
 └── package.json
 ```
 
 ## Components
 
-### Toolbar
+### Sidebar
 
-`Toolbar.vue` provides a toolbar with buttons to save, load, and clear the canvas.
+`Sidebar.vue` contains a list of draggable items that can be added to the canvas.
 
 ### Canvas
 
@@ -82,6 +84,10 @@ nuxt-canvas-project
 ### Node
 
 `Node.vue` represents individual nodes that can be dragged and resized.
+
+### Toolbar
+
+`Toolbar.vue` provides a toolbar with buttons to save, load, and clear the canvas.
 
 ## Store
 
