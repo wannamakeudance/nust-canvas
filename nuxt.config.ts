@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   },
   modules: [
     "@nuxtjs/device",
+    "@pinia/nuxt",
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
         // @ts-expect-error

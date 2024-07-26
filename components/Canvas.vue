@@ -4,7 +4,7 @@
       class="mt-2"
       prepend-icon="mdi-map-marker-multiple"
       width="460"
-      title="How to add connections"
+      title="HOW TO ADD CONNECTIONS"
       subtitle="Double click target nodes in the canva to connect them"
     ></v-card>
     <svg class="connections">
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { useCanvasStore } from "~/stores/canvas";
 import Node from "./Node.vue";
 
 export default {
@@ -38,20 +39,27 @@ export default {
   },
   data() {
     return {
-      nodes: [],
-      connections: [],
       draggingNode: null,
       connectingNode: null,
       resizingNode: null,
       startPos: { x: 0, y: 0 },
     };
   },
+  computed: {
+    nodes() {
+      return useCanvasStore().getNodes;
+    },
+    connections() {
+      return useCanvasStore().getConnections;
+    },
+  },
   methods: {
     onDrop(event) {
       const component = JSON.parse(event.dataTransfer.getData("component"));
       const x = event.offsetX;
       const y = event.offsetY;
-      this.nodes.push({ ...component, x, y, size: 100 }); // Default icon size
+      const canvasStore = useCanvasStore();
+      canvasStore.addNode({ ...component, x, y, size: 100 });
     },
     startDragNode(index, event) {
       this.draggingNode = index;
@@ -99,9 +107,8 @@ export default {
       if (this.connectingNode === null) {
         this.connectingNode = index;
       } else {
-        const startNode = this.nodes[this.connectingNode];
-        const endNode = this.nodes[index];
-        this.connections.push({
+        const canvasStore = useCanvasStore();
+        canvasStore.addConnection({
           startNodeIndex: this.connectingNode,
           endNodeIndex: index,
         });
@@ -124,43 +131,25 @@ export default {
       return `M ${startX},${startY} Q ${midX},${startY} ${endX},${endY}`;
     },
     updateConnections() {
-      this.connections = this.connections.map((connection) => {
-        const startNode = this.nodes[connection.startNodeIndex];
-        const endNode = this.nodes[connection.endNodeIndex];
-        return {
-          ...connection,
-          startX: startNode.x + startNode.size / 2,
-          startY: startNode.y + startNode.size / 2,
-          endX: endNode.x + endNode.size / 2,
-          endY: endNode.y + endNode.size / 2,
-        };
-      });
-    },
-    saveData() {
-      localStorage.setItem("nodes", JSON.stringify(this.nodes));
-      localStorage.setItem("connections", JSON.stringify(this.connections));
-    },
-    clearData() {
-      this.nodes = [];
-      this.connections = [];
-      this.updateConnections();
-      localStorage.setItem("nodes", "");
-      localStorage.setItem("connections", "");
-    },
-    loadData() {
-      const savedNodes = localStorage.getItem("nodes");
-      const savedConnections = localStorage.getItem("connections");
-      if (savedNodes) {
-        this.nodes = JSON.parse(savedNodes);
-      }
-      if (savedConnections) {
-        this.connections = JSON.parse(savedConnections);
-      }
-      this.updateConnections();
+      const canvasStore = useCanvasStore();
+      canvasStore.setConnections(
+        this.connections.map((connection) => {
+          const startNode = this.nodes[connection.startNodeIndex];
+          const endNode = this.nodes[connection.endNodeIndex];
+          return {
+            ...connection,
+            startX: startNode.x + startNode.size / 2,
+            startY: startNode.y + startNode.size / 2,
+            endX: endNode.x + endNode.size / 2,
+            endY: endNode.y + endNode.size / 2,
+          };
+        })
+      );
     },
   },
   mounted() {
-    this.loadData();
+    const canvasStore = useCanvasStore();
+    canvasStore.loadData();
   },
 };
 </script>
@@ -171,8 +160,8 @@ export default {
   padding-left: 140px;
   width: 100%;
   height: 90vh;
-  background: linear-gradient(90deg, rgba(200, 200, 200, 0.6) 3%, transparent 0),
-    linear-gradient(rgba(200, 200, 200, 0.5) 3%, transparent 0);
+  background: linear-gradient(90deg, rgba(200, 200, 200, 0.7) 3%, transparent 0),
+    linear-gradient(rgba(200, 200, 200, 0.7) 3%, transparent 0);
   background-size: 20px 20px;
 }
 .connections {

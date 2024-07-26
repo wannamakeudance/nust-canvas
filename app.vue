@@ -8,7 +8,7 @@
   ></v-empty-state>
   <v-app v-else>
     <Sidebar />
-    <Toolbar @save="saveData" @load="loadData" @clear="clearData" />
+    <Toolbar />
     <Canvas ref="canvas" />
   </v-app>
 </template>
@@ -18,17 +18,6 @@ export default {
   computed: {
     isMobile() {
       return this.$device.isMobile;
-    },
-  },
-  methods: {
-    saveData() {
-      this.$refs.canvas.saveData();
-    },
-    loadData() {
-      this.$refs.canvas.loadData();
-    },
-    clearData() {
-      this.$refs.canvas.clearData();
     },
   },
 };

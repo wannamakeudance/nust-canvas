@@ -2,12 +2,8 @@
   <div>
     <v-toolbar class="toolbar">
       <v-spacer></v-spacer>
-      <v-btn variant="tonal" color="green" @click="$emit('save')">Save</v-btn>
-      <v-btn
-        variant="tonal"
-        color="blue"
-        class="ml-5 mr-3"
-        @click="$emit('load')"
+      <v-btn variant="tonal" color="green" @click="saveData">Save</v-btn>
+      <v-btn variant="tonal" color="blue" class="ml-5 mr-3" @click="loadData"
         >Load</v-btn
       >
       <v-btn variant="tonal" color="red" class="ml-5 mr-3" @click="openDialog"
@@ -32,6 +28,8 @@
 </template>
 
 <script>
+import { useCanvasStore } from "~/stores/canvas";
+
 export default {
   data() {
     return {
@@ -42,9 +40,18 @@ export default {
     openDialog() {
       this.dialog = true;
     },
+    saveData() {
+      const canvasStore = useCanvasStore();
+      canvasStore.saveData();
+    },
+    loadData() {
+      const canvasStore = useCanvasStore();
+      canvasStore.loadData();
+    },
     confirmClear() {
       this.dialog = false;
-      this.$emit("clear");
+      const canvasStore = useCanvasStore();
+      canvasStore.clearCanvas();
     },
   },
 };

@@ -13,7 +13,9 @@
     "@mdi/font": "^7.4.47",
     "@nuxtjs/composition-api": "^0.34.0",
     "@nuxtjs/device": "^3.1.1",
+    "@pinia/nuxt": "^0.5.1",
     "nuxt": "^3.12.4",
+    "pinia": "^2.1.7",
     "vue": "latest",
     "vuetify": "^3.6.13"
   },
