@@ -3,9 +3,10 @@
     permanent
     class="sidebar"
     color="grey-darken-4"
-    width="100"
+    width="140"
   >
     <v-list class="icons-list">
+      <v-list-item class="mt-5 mb-8"><h3>PALETTE</h3> </v-list-item>
       <v-list-item
         class="mb-5"
         v-for="item in items"
@@ -17,7 +18,7 @@
           v-tooltip="item.name"
           :color="item.color"
           :icon="item.icon"
-          size="36"
+          size="40"
         ></v-icon>
       </v-list-item>
     </v-list>
@@ -35,7 +36,7 @@ export default {
           name: "Circle",
           icon: "mdi-circle-outline",
           color: "green-darken-2",
-          size: 48,
+          size: 100,
         },
         {
           id: 2,
@@ -43,7 +44,7 @@ export default {
           name: "Square",
           icon: "mdi-square-outline",
           color: "blue-darken-2",
-          size: 48,
+          size: 100,
         },
         {
           id: 3,
@@ -51,7 +52,7 @@ export default {
           name: "Triangle",
           icon: "mdi-triangle-outline",
           color: "red-darken-2",
-          size: 48,
+          size: 100,
         },
         {
           id: 4,
@@ -59,7 +60,7 @@ export default {
           name: "Star",
           icon: "mdi-star-outline",
           color: "yellow-darken-2",
-          size: 48,
+          size: 100,
         },
         {
           id: 5,
@@ -67,7 +68,7 @@ export default {
           name: "Note",
           icon: "mdi-note-outline",
           color: "purple-darken-2",
-          size: 48,
+          size: 100,
         },
       ],
     };
@@ -84,5 +85,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  i {
+    cursor: pointer;
+  }
 }
 </style>

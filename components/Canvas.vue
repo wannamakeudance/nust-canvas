@@ -1,5 +1,12 @@
 <template>
   <div class="canvas" @dragover.prevent @drop="onDrop">
+    <v-card
+      class="mt-2"
+      prepend-icon="mdi-map-marker-multiple"
+      width="460"
+      title="How to add connections"
+      subtitle="Double click target nodes in the canva to connect them"
+    ></v-card>
     <svg class="connections">
       <path
         v-for="(connection, index) in connections"
@@ -44,7 +51,7 @@ export default {
       const component = JSON.parse(event.dataTransfer.getData("component"));
       const x = event.offsetX;
       const y = event.offsetY;
-      this.nodes.push({ ...component, x, y, size: 48 }); // Default icon size
+      this.nodes.push({ ...component, x, y, size: 100 }); // Default icon size
     },
     startDragNode(index, event) {
       this.draggingNode = index;
@@ -161,6 +168,7 @@ export default {
 <style>
 .canvas {
   position: relative;
+  padding-left: 140px;
   width: 100%;
   height: 90vh;
   background: linear-gradient(90deg, rgba(200, 200, 200, 0.6) 3%, transparent 0),

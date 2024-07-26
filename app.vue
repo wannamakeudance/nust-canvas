@@ -1,11 +1,11 @@
 <template>
-  <h3
+  <v-empty-state
     v-if="$device.isMobile"
-    color="blue-grey-darken-3"
-    class="mt-15 pl-5 pr-5"
-  >
-    Please use your laptop to use this platform, thanks for your understanding
-  </h3>
+    class="mt-10"
+    headline="Whoops"
+    title="Device is not surpported"
+    text="Please use your laptop to use this platform, thanks for your understanding"
+  ></v-empty-state>
   <v-app v-else>
     <Sidebar />
     <Toolbar @save="saveData" @load="loadData" @clear="clearData" />

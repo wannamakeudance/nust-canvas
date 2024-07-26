@@ -19,7 +19,7 @@
     <v-icon
       class="resize-handle"
       icon="mdi-resize-bottom-right"
-      size="large"
+      size="28"
       color="grey-darken-3"
       @mousedown.stop="startResize"
     ></v-icon>
@@ -49,8 +49,8 @@ export default {
 }
 .resize-handle {
   position: absolute;
-  right: -5px;
-  bottom: -5px;
+  right: -14px;
+  bottom: -14px;
   width: 10px;
   height: 10px;
   cursor: se-resize;
