@@ -1,10 +1,12 @@
-# Nuxt 3 Minimal Starter
+# Nuxt Canvas
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![demo](/public/demo.png)
 
 ## Setup
 
-Make sure to install the dependencies:
+1. node version > 18
+
+2. Make sure to install the dependencies:
 
 ```bash
 # npm
