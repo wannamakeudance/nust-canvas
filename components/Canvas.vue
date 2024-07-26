@@ -133,6 +133,13 @@ export default {
       localStorage.setItem("nodes", JSON.stringify(this.nodes));
       localStorage.setItem("connections", JSON.stringify(this.connections));
     },
+    clearData() {
+      this.nodes = [];
+      this.connections = [];
+      this.updateConnections();
+      localStorage.setItem("nodes", "");
+      localStorage.setItem("connections", "");
+    },
     loadData() {
       const savedNodes = localStorage.getItem("nodes");
       const savedConnections = localStorage.getItem("connections");
