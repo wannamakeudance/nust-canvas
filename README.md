@@ -1,75 +1,92 @@
-# Nuxt Canvas
+# Nuxt Canvas Project
 
-![demo](/public/demo.png)
+This project is a Nuxt.js application with a canvas feature where users can drag and drop pre-defined components onto a canvas, resize them, and connect them with curved lines. The state management is handled using Pinia.
 
-## Setup
+## Table of Contents
 
-1. node version > 18
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Components](#components)
+- [Store](#store)
+- [License](#license)
 
-2. Make sure to install the dependencies:
+## Features
+
+- Drag and drop components such as circle, squre, star, note, triangle into a canvas.
+- Enable to drag or resize the components.
+- Double click the components to connect them with curved lines.
+- Save and load canvas state using localStorage.
+- Clear the canvas.
+
+## Installation
+
+1. Clone the repository:
 
 ```bash
-# npm
-npm install
+git clone https://github.com/wannamakeudance/nust-canvas.git
+```
 
-# pnpm
-pnpm install
+2. Navigate to the project directory:
 
-# yarn
+```bash
+cd nuxt-canvas/
+```
+
+3. Make sure node version >= 18
+
+4. Install dependencies:
+
+```bash
 yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Usage
 
-Start the development server on `http://localhost:3000`:
+1. Start the development server:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
 yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+2. Open your browser and navigate to `http://localhost:3000`.
 
-Build the application for production:
+## Project Structure
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+nuxt-canvas-project
+├── components
+│   ├── Toolbar.vue
+│   ├── Canvas.vue
+│   └── Node.vue
+├── stores
+│   └── canvas.js
+├── pages
+│   └── index.vue
+├── static
+├── nuxt.config.js
+└── package.json
 ```
 
-Locally preview production build:
+## Components
 
-```bash
-# npm
-npm run preview
+### Toolbar
 
-# pnpm
-pnpm run preview
+`Toolbar.vue` provides a toolbar with buttons to save, load, and clear the canvas.
 
-# yarn
-yarn preview
+### Canvas
 
-# bun
-bun run preview
-```
+`Canvas.vue` handles the main canvas area where users can drag and drop components, resize them, and connect them with lines.
+
+### Node
+
+`Node.vue` represents individual nodes that can be dragged and resized.
+
+## Store
+
+The project uses Pinia for state management. The store is defined in `stores/canvas.js` and handles the state for nodes and connections, including actions for saving, loading, and clearing the canvas.
+
+## License
+
+This project is licensed under the MIT License.
